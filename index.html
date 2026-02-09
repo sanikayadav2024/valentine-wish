@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Valentine’s Day</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="hearts-bg"></div>
+<div class="floating-hearts" id="floatHearts"></div>
+
+<div class="card">
+  <div class="title">Happy Valentine’s Day 💕</div>
+  <div class="subtitle">for my favorite person</div>
+  <div class="heart">❤️</div>
+  <div class="message" id="msg"></div>
+  <button id="btn">Tap for love</button>
+</div>
+
+<div class="footer">with all my love</div>
+
+<script>
+const messages = [
+  "You make my life softer, warmer, and happier 💗",
+  "Every ordinary day feels special with you ✨",
+  "You are my safe place and my favorite place 🤍",
+  "I smile more, laugh more, and live better because of you 😊",
+  "I’m really grateful that I get to love you 💞",
+  "Happy Valentine’s Day, my love ❤️"
+];
+
+let i = 0;
+const msg = document.getElementById('msg');
+const btn = document.getElementById('btn');
+const heartsBox = document.getElementById('floatHearts');
+
+btn.onclick = ()=>{
+  msg.innerText = messages[i];
+  msg.classList.add('show');
+  spawnHearts();
+  i = (i + 1) % messages.length;
+}
+
+function spawnHearts(){
+  for(let i=0;i<6;i++){
+    const h = document.createElement('div');
+    h.className = 'float-heart';
+    h.innerText = ['❤️','💗','💖','💕','💞'][Math.floor(Math.random()*5)];
+    h.style.left = Math.random()*100 + 'vw';
+    h.style.animationDuration = (4+Math.random()*3)+'s';
+    heartsBox.appendChild(h);
+    setTimeout(()=>h.remove(),8000);
+  }
+}
+</script>
+
+</body>
+</html>
